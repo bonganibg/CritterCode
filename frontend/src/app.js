@@ -1,14 +1,20 @@
 class FormData {
     constructor() {
         this._reviewType = 1;
+        this._name = undefined;
         this._message = undefined;
         this._mandetoryLink = undefined;
         this._links = [];
     }
 
+    getMessage(){
+        // return this.isValid() ? ``
+    }
+
     getFormData() {
         return this.isValid() ? {
             reviewType: this._reviewType,
+            name: this._name,
             message: this._message,
             mandetoryLink: this._mandetoryLink,
             links: this._links
@@ -16,7 +22,12 @@ class FormData {
     }
 
     isValid() {
-        return this._reviewType && this._mandetoryLink && this._message;
+        return this._reviewType && this._mandetoryLink && this._message && this._name;
+    }
+
+    updateName(name){
+        name = this.#cleanText(name);
+        this._name = name;
     }
 
     updateMessage(message) {
@@ -78,6 +89,7 @@ class FormControls {
     projectLinkContainer = document.getElementById("project-links");
     addLinkButton = document.getElementById("add-link-button");
     sendReviewButton = document.getElementById("send-review")
+    personNameInput = document.getElementById("person-name");
 
     /**
      * 
@@ -118,7 +130,8 @@ class FormControls {
     }
 
     #addInputEventListener(){
-        this.feedbackMessage.addEventListener('change', (e) => this._formData.updateMessage(e.target.value))
+        this.feedbackMessage.addEventListener('change', (e) => this._formData.updateMessage(e.target.value));
+        this.personNameInput.addEventListener('change', (e) => this._formData.updateName(e.target.value));
     }
 
     #addMandetoryLinkListener(){
@@ -126,7 +139,42 @@ class FormControls {
     }
 
     #sendReviewListner(){
-        this.sendReviewButton.addEventListener('click', () => console.log(this._formData.getFormData()))
+        this.sendReviewButton.addEventListener('click', () => {
+            const details = this._formData.getFormData();
+
+            if (!details){
+                alert("Please make sure that all mandetory fields are filled");
+                return;
+            }
+
+            const otherLinks = () => {
+                const output = [];
+
+                for (let link of details.links){
+                    output.push(link.link)
+                }
+
+                return output.join("\n")
+            }
+
+            const username = details.name;
+            const content = `${details.message}\nmain link: ${details.mandetoryLink}\n${details.links}\nOther Links${otherLinks()}`;
+            
+            const headers = new Headers();
+            headers.append("Content-Type", "application/json");
+
+            // This will be deleted soon RELAAAXXXX
+            const discordConnection = "https://discord.com/api/webhooks/1256687026250584084/ZtyedEy73Vpvb4yW10HZV_W8PsJT-DxtZbXjCMO4KhJ5D51fY1BMr5BC00PpvQJsrHFa";
+            fetch(discordConnection, {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify({
+                    username,
+                    content,
+
+                })
+            })
+        });
     }
 
     #featureNotEnabled(){

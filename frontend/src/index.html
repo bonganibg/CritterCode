@@ -49,7 +49,7 @@
 
 
          <!-- Type of feedback -->
-         <section>
+         <!-- <section>
             <ul class="flex gap-3 text-[#DEE2E6]">
                 <li class=" hover:text-[#adb5bd]">
                     <button class="selected feedback-type" data-feedback-type="1">
@@ -67,20 +67,22 @@
                     </button>
                 </li>
             </ul>
-         </section>
+         </section> -->
 
          <!-- Text content -->
          <section class="w-[70%] flex flex-col gap-10 items-start text-[#ADB5BD]">
+            <input placeholder="You name" id="person-name" type="text" class="border-b-2 w-full">
             <textarea name="" id="feedback-message" class="border-b-2 w-full" placeholder="Message"></textarea>
+
 
             <ul class="w-full flex flex-col gap-5" id="project-links">
                 <li>
                     <input placeholder="Link" id="mandetory-link" type="text" class="border-b-2 w-full">
                 </li>                
             </ul>
-            <button id="add-link-button" class="text-3xl font-light hover:text-[#212529]">
+            <!-- <button id="add-link-button" class="text-3xl font-light hover:text-[#212529]">
                 +
-            </button>
+            </button> -->
          </section>
 
          <button class="text-2xl font-light" id="send-review">
