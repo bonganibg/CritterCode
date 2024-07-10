@@ -96,6 +96,7 @@ class FormControls {
         this.#addInputEventListener();
         this.#addMandetoryLinkListener();
         this.#sendReviewListner();
+        this.#featureNotEnabled();
     }
 
     #feedbackTypeEventListener() {
@@ -126,6 +127,15 @@ class FormControls {
 
     #sendReviewListner(){
         this.sendReviewButton.addEventListener('click', () => console.log(this._formData.getFormData()))
+    }
+
+    #featureNotEnabled(){
+        const allButtons = document.querySelectorAll("nav button");
+
+        for (const button of allButtons){
+            button.addEventListener('click', () => alert("This doesn't exist yet"))
+        }
+
     }
 
     addNewLinkInput() {
