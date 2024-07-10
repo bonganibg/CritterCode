@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/output.css">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="icon" href="../icon.svg">
+    <title>CritterCode</title>    
+</head>
+<body class="flex flex-col justify-between h-[100vh]">
+
+    <nav class="flex justify-between bg-[#EDF2FB] py-4 px-36 text-[#adb5bd]">
+        <div class="w-6 flex gap-5 hover:cursor-pointer">
+            <img src="../icon.svg" alt="">
+            <h2 class="text-[#343a40]">
+                CritterCode
+            </h2>
+        </div>
+        <ul class="flex justify-between gap-4">
+            <li>
+                <a href="">
+                    submit work
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    project ideas
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    learning resources
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="flex flex-col m-32 mx-64 items-start gap-10">
+        <!-- Message section -->
+         <section class="flex flex-col gap-5">
+            <p class="w-[70%] italic text-[#ADB5BD]">
+                All feedback will be provided through GitHub Issues so please make sure that you include a link to a GitHub repo.
+                If you don’t want the issues to be visible on the repository, feel free to delete the issues once you have moved
+                the feedback to another location
+            </p>
+            <hr class="w-[5%]">
+         </section>
+
+
+         <!-- Type of feedback -->
+         <section>
+            <ul class="flex gap-3 text-[#DEE2E6]">
+                <li class="selected hover:text-[#adb5bd]">
+                    <button class="feedback-type" data-feedback-type="1">
+                        code review
+                    </button>
+                </li>
+                <li class="hover:text-[#adb5bd] ">
+                    <button class="feedback-type" data-feedback-type="2"> 
+                        project review
+                    </button>
+                </li>
+                <li class="hover:text-[#adb5bd]">
+                    <button class="feedback-type" data-feedback-type="3">
+                        project advice
+                    </button>
+                </li>
+            </ul>
+         </section>
+
+         <!-- Text content -->
+         <section class="w-[70%] flex flex-col gap-10 items-start text-[#ADB5BD]">
+            <textarea name="" id="feedback-message" class="border-b-2 w-full" placeholder="Message"></textarea>
+
+            <ul class="w-full flex flex-col gap-5" id="project-links">
+                <li>
+                    <input placeholder="Link" id="mandetory-link" type="text" class="border-b-2 w-full">
+                </li>                
+            </ul>
+            <button id="add-link-button" class="text-3xl font-light hover:text-[#212529]">
+                +
+            </button>
+         </section>
+
+         <button class="text-2xl font-light">
+            Send
+         </button>
+    </main>
+
+    <footer class="items-end flex gap-1 m-5 mx-36">
+        <div>
+            created by  <span class="underline"><a target="_blank" href="https://github.com/bonganibg">bonganibg</a></span>
+        </div>
+    </footer>
+    
+    <script src="./app.js"></script>
+</body>
+</html>
